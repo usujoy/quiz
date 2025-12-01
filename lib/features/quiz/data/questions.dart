@@ -1,4 +1,4 @@
-import 'package:practice/models/quiz-questions.dart';
+import 'package:practice/features/quiz/models/quiz-questions.dart';
 
 final questions = [
   QuizQuestion('What are the main building blocks of Flutter UIs?', [
@@ -41,3 +41,5 @@ final questions = [
     'By calling updateState()',
   ]),
 ];
+
+
