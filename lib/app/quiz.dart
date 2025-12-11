@@ -8,18 +8,16 @@ class Quiz extends StatefulWidget {
   const Quiz({super.key});
 
   @override
-  State<StatefulWidget> createState() {
-    return _QuizState();
-  }
+  State<Quiz> createState() => _QuizState();
 }
 
 class _QuizState extends State<Quiz> {
   List<String> selectedAnswers = [];
-  var activeScreen = "start-screen";
+  String activeScreen = "start-screen";
 
   void switchScreen() {
     setState(() {
-      activeScreen = 'question-screen';
+      activeScreen = "question-screen";
     });
   }
 
@@ -29,7 +27,6 @@ class _QuizState extends State<Quiz> {
     if (selectedAnswers.length == questions.length) {
       setState(() {
         activeScreen = "result-screen";
-        // selectedAnswers = [];
       });
     }
   }
@@ -40,20 +37,19 @@ class _QuizState extends State<Quiz> {
 
     if (activeScreen == "question-screen") {
       currentScreen = QuestionsScreen(chooseAnswer);
-    }
-
-    if (activeScreen == 'result-screen') {
-      currentScreen = ResultScreen(selectedAnswers);
+    } else if (activeScreen == "result-screen") {
+      currentScreen = resultScreen(selectedAnswers);
       selectedAnswers = [];
     }
+
     return MaterialApp(
       home: Scaffold(
         body: Container(
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             gradient: LinearGradient(
               colors: [
-                const Color.fromARGB(255, 60, 16, 136),
-                const Color.fromARGB(255, 92, 14, 148),
+                Color.fromARGB(255, 140, 84, 235),
+                Color.fromARGB(255, 180, 143, 206),
               ],
               begin: Alignment.bottomLeft,
               end: Alignment.topRight,

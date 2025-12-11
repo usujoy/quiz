@@ -1,21 +1,20 @@
 import 'package:flutter/material.dart';
 
-class Summary extends StatelessWidget {
-  const Summary(this.summaryData, {super.key});
-
-  final List<Map<String, Object>> summaryData;
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: summaryData.map((data) {
-        return Row(
-          children: [
-            Text(data["question"] as String),
-            Text(((data["question-index"] as int) + 1).toString()),
-          ],
-        );
-      }).toList(),
-    );
+String getTotalScore(List<Map<String, Object>> summaryData) {
+  int totalScore = 0;
+  for (var data in summaryData) {
+    totalScore += data["user-answer"] == data["correct-answer"] ? 1 : 0;
   }
+  return totalScore.toString();
+}
+
+Widget summary(List<Map<String, Object>> summaryData) {
+  return Column(
+    children: [
+      Text(
+        " Total score is : ${getTotalScore(summaryData)}",
+        style: TextStyle(color: Colors.white),
+      ),
+    ],
+  );
 }
